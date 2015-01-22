@@ -8,21 +8,18 @@ class Hamming
   class Strand
     include Enumerable
 
-    attr_reader :values
+    attr_reader :nucleotides
 
     def initialize(string)
-      @values = String(string).chars
+      @nucleotides = String(string).chars
     end
 
     def each(&blk)
-      values.each &blk
+      nucleotides.each &blk
     end
 
     def calculate_hamming(other)
-      zip(other).inject(0) do |collector, pair|
-        collector += 1 if pair.first != pair.last
-        collector
-      end
+      zip(other).count { |pair| pair.first != pair.last }
     end
   end
 end
