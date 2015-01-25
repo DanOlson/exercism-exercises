@@ -19,7 +19,7 @@ class Hamming
     end
 
     def calculate_hamming(other)
-      zip(other).count { |pair| pair.first != pair.last }
+      zip(other).count { |n1, n2| n1 != n2 }
     end
   end
 end
